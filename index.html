@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC 2026 - Ricardo & Esposa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --gold: #f59e0b;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-primary); padding-bottom: 60px; -webkit-font-smoothing: antialiased; }
+        header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 18px 16px; text-align: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        header h1 { font-size: 1.15rem; color: var(--accent); font-weight: 700; }
+        header p { font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px; }
+        .nav-tabs { display: flex; overflow-x: auto; background: var(--card-bg); padding: 10px; gap: 8px; border-bottom: 1px solid var(--border); scrollbar-width: none; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { background: var(--bg-color); border: 1px solid var(--border); color: var(--text-secondary); padding: 7px 12px; border-radius: 20px; font-size: 0.75rem; white-space: nowrap; cursor: pointer; }
+        .tab-btn.active { background: var(--accent); color: var(--bg-color); border-color: var(--accent); font-weight: 600; }
+        .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+        .card h2 { font-size: 1rem; color: var(--gold); margin-bottom: 12px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+        .stat-box { background: var(--bg-color); border: 1px solid var(--border); padding: 8px; border-radius: 8px; text-align: center; }
+        .stat-box span { display: block; font-size: 0.65rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 2px; }
+        .stat-box strong { font-size: 0.85rem; color: var(--text-primary); }
+        .timeline-item { position: relative; padding-left: 14px; border-left: 2px solid var(--accent); margin-bottom: 12px; }
+        .timeline-time { font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+        .timeline-title { font-size: 0.85rem; font-weight: 600; margin: 2px 0; }
+        .timeline-desc { font-size: 0.75rem; color: var(--text-secondary); }
+        .input-group { margin-top: 10px; background: var(--bg-color); padding: 8px; border-radius: 8px; border: 1px solid var(--border); }
+        .input-group label { font-size: 0.7rem; color: var(--text-secondary); display: block; margin-bottom: 3px; }
+        .input-group input { width: 100%; background: var(--card-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 6px; border-radius: 6px; font-size: 0.8rem; }
+        .map-btn { display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: white; text-decoration: none; padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; margin-top: 6px; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fa-solid fa-plane-departure"></i> NYC 2026 - Ricardo & Esposa</h1>
+        <p>Hilton Garden Inn Times Square South</p>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('dia1')">29/11</button>
+        <button class="tab-btn" onclick="switchTab('dia2')">30/11</button>
+        <button class="tab-btn" onclick="switchTab('dia3')">01/12</button>
+        <button class="tab-btn" onclick="switchTab('dia4')">02/12</button>
+        <button class="tab-btn" onclick="switchTab('dia5')">03/12</button>
+        <button class="tab-btn" onclick="switchTab('dia6')">04/12</button>
+        <button class="tab-btn" onclick="switchTab('dia7')">05/12</button>
+        <button class="tab-btn" onclick="switchTab('rotas')">🗺️ Rotas</button>
+        <button class="tab-btn" onclick="switchTab('orcamento')">💰 Orçamento</button>
+    </div>
+
+    <div class="container">
+        <div id="dia1" class="tab-content active">
+            <div class="card">
+                <h2>29/11 — Chegada, Apple & Times Square</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>12k - 15k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia1" placeholder="Ex: 13450" onchange="saveData('steps-dia1')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">11:00 - 12:30</div><div class="timeline-title">Apple Fifth Avenue</div><div class="timeline-desc">Loja icônica 24h na 5ª Avenida.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Apple+Fifth+Avenue+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">18:00 - 19:30</div><div class="timeline-title">Times Square</div><div class="timeline-desc">Fotos noturnas e luzes natalinas.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Times+Square+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia1" placeholder="Ex: 150" onchange="saveData('cost-dia1')"></div>
+            </div>
+        </div>
+
+        <div id="dia2" class="tab-content">
+            <div class="card">
+                <h2>30/11 — Central Park & Keens Steakhouse</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>14k - 18k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia2" placeholder="Ex: 16000" onchange="saveData('steps-dia2')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">09:45 - 12:30</div><div class="timeline-title">Central Park</div><div class="timeline-desc">The Mall, Bethesda Terrace e Bow Bridge.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Bethesda+Terrace+Central+Park" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">18:30 - 20:30</div><div class="timeline-title">Keens Steakhouse</div><div class="timeline-desc">72 W 36th Street. Jantar especial.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Keens+Steakhouse+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia2" placeholder="Ex: 280" onchange="saveData('cost-dia2')"></div>
+            </div>
+        </div>
+
+        <div id="dia3" class="tab-content">
+            <div class="card">
+                <h2>01/12 — Estátua da Liberdade & Financial District</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>13k - 16k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia3" placeholder="Ex: 14200" onchange="saveData('steps-dia3')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">09:00 - 13:30</div><div class="timeline-title">Estátua da Liberdade & Ellis Island</div><div class="timeline-desc">Ferry oficial a partir de Battery Park.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Battery+Park+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">14:15 - 16:15</div><div class="timeline-title">Wall Street & Memorial 9/11</div><div class="timeline-desc">Charging Bull e Oculus.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Charging+Bull+Wall+Street" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia3" placeholder="Ex: 200" onchange="saveData('cost-dia3')"></div>
+            </div>
+        </div>
+
+        <div id="dia4" class="tab-content">
+            <div class="card">
+                <h2>02/12 — SUMMIT & Grand Central</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>10k - 14k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia4" placeholder="Ex: 12000" onchange="saveData('steps-dia4')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">09:45 - 11:00</div><div class="timeline-title">Grand Central Terminal</div><div class="timeline-desc">Salão principal e relógio central.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Grand+Central+Terminal+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">11:15 - 13:15</div><div class="timeline-title">SUMMIT One Vanderbilt</div><div class="timeline-desc">Experiência imersiva e mirante.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=SUMMIT+One+Vanderbilt" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia4" placeholder="Ex: 300" onchange="saveData('cost-dia4')"></div>
+            </div>
+        </div>
+
+        <div id="dia5" class="tab-content">
+            <div class="card">
+                <h2>03/12 — Brooklyn Bridge & DUMBO</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>15k - 19k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia5" placeholder="Ex: 17500" onchange="saveData('steps-dia5')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">09:45 - 10:45</div><div class="timeline-title">Brooklyn Bridge</div><div class="timeline-desc">Atravessar a ponte a pé para o Brooklyn.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Brooklyn+Bridge+Pedestrian+Walkway" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">10:45 - 12:00</div><div class="timeline-title">DUMBO & Washington Street</div><div class="timeline-desc">Foto clássica da Manhattan Bridge.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Washington+St+DUMBO" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia5" placeholder="Ex: 140" onchange="saveData('cost-dia5')"></div>
+            </div>
+        </div>
+
+        <div id="dia6" class="tab-content">
+            <div class="card">
+                <h2>04/12 — High Line, West Village & Old Homestead</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>16k - 20k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia6" placeholder="Ex: 18200" onchange="saveData('steps-dia6')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">09:30 - 11:30</div><div class="timeline-title">High Line & Chelsea Market</div><div class="timeline-desc">Parque elevado e almoço.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=High+Line+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">14:15 - 15:00</div><div class="timeline-title">Prédio de Friends</div><div class="timeline-desc">90 Bedford Street (West Village).</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=90+Bedford+St+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="timeline-item"><div class="timeline-time">17:30 - 19:30</div><div class="timeline-title">Old Homestead Steakhouse</div><div class="timeline-desc">56 9th Avenue. Jantar de despedida.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Old+Homestead+Steakhouse+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia6" placeholder="Ex: 320" onchange="saveData('cost-dia6')"></div>
+            </div>
+        </div>
+
+        <div id="dia7" class="tab-content">
+            <div class="card">
+                <h2>05/12 — Retorno ao JFK</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><span>Passos Estimados</span><strong>5k - 8k</strong></div>
+                    <div class="stat-box"><span>Passos Reais</span><input type="number" id="steps-dia7" placeholder="Ex: 6000" onchange="saveData('steps-dia7')" style="background:transparent;border:none;color:var(--accent);text-align:center;font-weight:bold;width:100%;"></div>
+                </div>
+                <div class="timeline-item"><div class="timeline-time">09:30 - 11:00</div><div class="timeline-title">Manhã Livre em Midtown</div><div class="timeline-desc">Fotos finais e lembranças.</div></div>
+                <div class="timeline-item"><div class="timeline-time">13:00 - 18:00</div><div class="timeline-title">Deslocamento ao JFK</div><div class="timeline-desc">LIRR + AirTrain. Voo às 18h.</div><a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=JFK+Airport+New+York" target="_blank"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a></div>
+                <div class="input-group"><label>Gasto Real do Dia (USD)</label><input type="number" id="cost-dia7" placeholder="Ex: 90" onchange="saveData('cost-dia7')"></div>
+            </div>
+        </div>
+
+        <div id="rotas" class="tab-content">
+            <div class="card">
+                <h2>🗺️ Rotas a Partir do Hotel</h2>
+                <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:10px;">Hilton Garden Inn Times Square South:</p>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Apple+Fifth+Avenue+New+York" target="_blank">Rota para Apple Store</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Columbus+Circle+Central+Park+New+York" target="_blank">Rota para Central Park Sul</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=South+Ferry+Battery+Park+New+York" target="_blank">Rota para Estátua da Liberdade</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Grand+Central+Terminal+New+York" target="_blank">Rota para Grand Central</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Brooklyn+Bridge+Pedestrian+Walkway" target="_blank">Rota para Brooklyn Bridge</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Hudson+Yards+High+Line+New+York" target="_blank">Rota para High Line</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=90+Bedford+St+New+York" target="_blank">Rota para Prédio de Friends</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Keens+Steakhouse+New+York" target="_blank">Rota para Keens Steakhouse</a>
+                    <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&origin=Hilton+Garden+Inn+New+York+Times+Square+South&destination=Old+Homestead+Steakhouse+New+York" target="_blank">Rota para Old Homestead</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="orcamento" class="tab-content">
+            <div class="card">
+                <h2>💰 Resumo de Gastos do Casal</h2>
+                <div class="stat-box" style="margin-bottom:12px;"><span>Total Gasto Registrado</span><strong id="total-spent" style="color:var(--accent); font-size:1.1rem;">US$ 0</strong></div>
+                <p style="font-size:0.75rem; color:var(--text-secondary); text-align:center;">Os valores informados nos dias somam aqui automaticamente!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        function saveData(key) {
+            localStorage.setItem(key, document.getElementById(key).value);
+            calcTotal();
+        }
+        function calcTotal() {
+            let total = 0;
+            for(let i=1; i<=7; i++) {
+                total += parseFloat(localStorage.getItem(`cost-dia${i}`)) || 0;
+            }
+            document.getElementById('total-spent').innerText = `US$ ${total.toFixed(2)}`;
+        }
+        window.onload = () => {
+            for(let i=1; i<=7; i++) {
+                if(localStorage.getItem(`steps-dia${i}`)) document.getElementById(`steps-dia${i}`).value = localStorage.getItem(`steps-dia${i}`);
+                if(localStorage.getItem(`cost-dia${i}`)) document.getElementById(`cost-dia${i}`).value = localStorage.getItem(`cost-dia${i}`);
+            }
+            calcTotal();
+        }
+    </script>
+</body>
+</html>
